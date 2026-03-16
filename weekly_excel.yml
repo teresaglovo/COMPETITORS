@@ -1,0 +1,40 @@
+name: Vicio — Actualización semanal Excel Competitors
+
+on:
+  schedule:
+    # Cada lunes a las 6:00 UTC = 8:00 AM hora Madrid (verano CEST)
+    # En invierno (CET, UTC+1) usar 7:00 UTC para las 8:00 AM
+    - cron: '0 6 * * 1'
+  workflow_dispatch:  # también se puede lanzar manualmente desde GitHub con un clic
+
+jobs:
+  actualizar-excel:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install anthropic openpyxl
+
+      - name: Ejecutar actualización del Excel
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EMAIL_REMITENTE:   ${{ secrets.EMAIL_REMITENTE }}
+          EMAIL_DESTINO:     ${{ secrets.EMAIL_DESTINO }}
+          GMAIL_APP_PASS:    ${{ secrets.GMAIL_APP_PASS }}
+          EXCEL_PATH:        XL_ES_Glossary_-_group___brand_.xlsx
+        run: python update_excel.py
+
+      - name: Guardar el Excel actualizado como artefacto de GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: excel-actualizado
+          path: "XL_ES_Glossary_w*.xlsx"
+          retention-days: 30
