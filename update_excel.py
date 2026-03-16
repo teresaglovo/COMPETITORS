@@ -24,8 +24,7 @@ ANTHROPIC_KEY   = os.environ["ANTHROPIC_API_KEY"]
 EMAIL_REMITENTE = os.environ["EMAIL_REMITENTE"]
 EMAIL_DESTINO   = os.environ["EMAIL_DESTINO"]
 GMAIL_APP_PASS  = os.environ["GMAIL_APP_PASS"]
-EXCEL_PATH      = os.environ.get("EXCEL_PATH", ""XL ES Glossary - group & brand .xlsx"")
-# ──────────────────────────────────────────────────────────────────────────────
+EXCEL_PATH = os.environ.get("EXCEL_PATH", "XL_ES_Glossary.xlsx")# ──────────────────────────────────────────────────────────────────────────────
 
 SHEET_NAME = "Competitors promos & pricing"
 
