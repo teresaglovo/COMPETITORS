@@ -7,7 +7,7 @@ Cada lunes:
   3. Para cada partner/plataforma, busca con Claude (web search):
        - DF, SF, MBS actuales
        - Promos activas (Comments)
-  4. Escribe las nuevas filas con el número de semana correcto
+  4. Escribe las nuevas filas con el número de semana correctoh
   5. Envía el Excel actualizado por Gmail
 """
 
